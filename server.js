@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const expressHandlebars = require('express-handlebars');
-const routes = require('./controllers');
+const routes = require('./controller');
 const handlebars = expressHandlebars.create({});
 
 //sets up sequalize and ports
