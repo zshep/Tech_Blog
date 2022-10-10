@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const expressHandlebars = require('express-handlebars');
 const routes = require('./controller');
+require('dotenv').config;
 const handlebars = expressHandlebars.create({});
 
 //sets up sequalize and ports

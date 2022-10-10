@@ -15,7 +15,7 @@ o set up routes
     0 set-up handle bars
     0 main handle bars
 
-0 setup data base
+x setup data base
 
 
 

@@ -1,6 +1,6 @@
 // api/login end point
 const router = require('express').Router();
-const { comment } =require('../../model/Comment')
+const { Comment } =require('../../model');
 
 //require proper model (login)
 
