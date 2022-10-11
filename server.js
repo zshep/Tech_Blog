@@ -1,10 +1,10 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const expressHandlebars = require('express-handlebars');
-const routes = require('./controller');
-require('dotenv').config;
 const handlebars = expressHandlebars.create({});
+const routes = require('./controller');
 
 //sets up sequalize and ports
 const sequelize = require('./config/connection');
@@ -15,13 +15,13 @@ const PORT = process.env.PORT || 3001;
 
 //sesion storage object 
 const sess = {
-  secret: 'CakeIsLie',
+  secret: process.env.secret,
   cookie: {
     //setting time limit on cookie to 3 minutse for testing
     maxAge: 1000*60*3
   },
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: new SequelizeStore({
     db: sequelize
   })
@@ -37,7 +37,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));//I'm not sure if I need this
-app.use(require('./controller/index'));
+app.use(require('./controller/index.js'));
 
 app.use(routes);
 
