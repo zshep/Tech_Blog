@@ -42,5 +42,5 @@ app.use(require('./controller/index.js'));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Sever is on, now listening'));
+  app.listen(PORT, () => console.log(`Sever is on, now listening at ${PORT}`));
 });
