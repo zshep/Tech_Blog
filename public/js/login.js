@@ -1,19 +1,15 @@
-//click button to submit UN and PW
-//Post route
-
-
 // function to handle log in
 const loginFormHandler = async (event) => {
     event.preventDefault();
     
     // grab variables of username/password
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#username-login').value.trim();
-  
-    if (email && password) {
+    const username = document.querySelector('#username').value.trim();
+    const password = document.querySelector('#password').value.trim();
+    // fetch using POST method
+    if (username && password) {
       const response = await fetch('/api/users/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   

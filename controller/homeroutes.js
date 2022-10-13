@@ -3,32 +3,54 @@ const { User, Post, Comment } = require('../model');
 const withAuth = require('../utils/auth');
 
 
-// create route for opening page
-router.get('/', async (req, res) => {});
-
 
 // route to log in
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
-  res.render('login');
+  try {
+    //view the login handlebars
+    res.status(200).render('login')
+  } catch(err) {res.status(500).json(err)}
 });
 
+
 //route to log out
-router.get('/', async (req, res) => {});
+router.get('/logout', async (req, res) => {
+  try {
+    //view the login handlebars
+    res.status(200).render('logout')
+  } catch(err) {res.status(500).json(err)}
+  
+});
 
-//route to get posts
-router.get('/', async (req, res) => {});
+//route to get all the posts
+router.get('/', async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+        include: [{ model: User,
+            attributes: ['user_name'] 
+        },
+        { model: Comment,
+        include: { model: User,
+            attributes: ['user_name'],
+            where: Comment.user_id = User.id,
+          } 
+        }]
+    })
+    const posts = postData.map((post) => post.get({plain:true}))
+    const comments = posts.map((post) => post.comments)
+    const users = comments.map((user) => user)
+    res.status(200).render('landingpage', {
+        posts,
+    }) 
+  } catch(err) {
+  res.status(500).json(err)}
+});
 
 
-//route to get comments
-router.get('/', async (req, res) => {});
+
 
 //route to get dashboard
 
-router.get('/', async (req, res) => {});
 
 
 
