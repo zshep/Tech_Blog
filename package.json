@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon app.js"
+    "watch": "nodemon app.js",
+    "seed": "node seeds/index.js"
   },
   "name": "tech_blog",
   "description": "Todo:\r o set up routes\r 0 set up models\r 0 set up server.js\r 0 set up log in (look up how to do that)\r 0 set up starter code\r     0 connection express\r     0 sequalize\r     0 bcrypt",

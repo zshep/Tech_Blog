@@ -1,10 +1,14 @@
+// grab variables of username/password
+const username = document.querySelector('#username-login').value.trim();
+const password = document.querySelector('#password-login').value.trim();
+
+
 // function to handle log in
 const loginFormHandler = async (event) => {
     event.preventDefault();
     
-    // grab variables of username/password
-    const username = document.querySelector('#username').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    
+    console.log(username, password);
     // fetch using POST method
     if (username && password) {
       const response = await fetch('/api/users/login', {
@@ -14,7 +18,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/landingpage');
       } else {
         alert('Failed to log in.');
       }

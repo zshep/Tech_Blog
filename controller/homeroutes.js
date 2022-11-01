@@ -12,6 +12,14 @@ router.get('/login', (req, res) => {
   } catch(err) {res.status(500).json(err)}
 });
 
+// route to sign in
+router.get('/signup', (req, res) => {
+  try {
+    //view the login handlebars
+    res.status(200).render('signup')
+  } catch(err) {res.status(500).json(err)}
+});
+
 
 //route to log out
 router.get('/logout', async (req, res) => {
@@ -40,7 +48,7 @@ router.get('/', async (req, res) => {
     const comments = posts.map((post) => post.comments)
     const users = comments.map((user) => user)
     res.status(200).render('landingpage', {
-        posts,
+        posts, comments
     }) 
   } catch(err) {
   res.status(500).json(err)}
