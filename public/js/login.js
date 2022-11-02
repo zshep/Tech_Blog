@@ -1,4 +1,6 @@
 // grab variables of username/password
+const usernameData = document.getElementById('username-login').value;
+const passwordData = document.getElementById('password-login').value;
 
 
 
@@ -7,8 +9,6 @@ const loginFormHandler = async (event) => {
     event.preventDefault();
     
    
-    const usernameData = document.getElementById('username-login').value;
-    const passwordData = document.getElementById('password-login').value;
 
     
     console.log(usernameData);
@@ -20,9 +20,9 @@ const loginFormHandler = async (event) => {
         body: JSON.stringify({ usernameData, passwordData }),
         headers: { 'Content-Type': 'application/json' },
       });
-  
+      //TO DO: Check if already registered or not
       if (response.ok) {
-        document.location.replace('/landingpage');
+        document.location.replace('/login');
         console.log('the response appears good')
       } else {
         alert('Failed to log in.');
