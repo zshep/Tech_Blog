@@ -40,9 +40,24 @@ router.get('/landingpage', async (req, res) => {
 });
 
 //route to dashboard
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    //view the dashboardhandlebars
+
+    //grab all posts from user
+    const oldPost = await Post.findAll(
+      {
+        where: {
+          user_id: req.session.userID
+        },
+        include: [{model: User,
+          attributes: ['user_name'],
+          where: Comment.user_id = User.id,
+        }]
+      }
+    )
+    console.log(oldPost);
+
+    // populate gotten posts into variable, send variable
     res.status(200).render('dashboard')
   } catch(err) {res.status(500).json(err)}
   

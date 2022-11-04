@@ -8,12 +8,11 @@ const passwordData = document.getElementById('password-login').value;
 const loginFormHandler = async (event) => {
     event.preventDefault();
     
-   
-
-    
+       
     console.log(usernameData);
     console.log(passwordData);
-    // fetch using POST method
+
+    // sending user name to check if username/password already exist
     if (usernameData && passwordData) {
       const response = await fetch('/api/user/', {
         method: 'POST',
@@ -22,11 +21,14 @@ const loginFormHandler = async (event) => {
       });
       //TO DO: Check if already registered or not
       if (response.ok) {
-        document.location.replace('/login');
         console.log('the response appears good')
+        //document.location.replace('/dashboard');
       } else {
         alert('Failed to log in.');
       }
+    } else {
+      console.log('There was a problem with signing in');
+      //window.alert('What did you do?!');
     }
   };
 
